@@ -44,6 +44,5 @@ class Layer:
             delta = delta * ACT_GRAD[self.activation](self.cache_z)
 
         self.grad_W = self.cache_input.T @ delta
-        self.grad_b = delta.sum(axis=0, keepdims=True)
-
+        self.grad_b = delta.mean(axis=0, keepdims=True)
         return delta @ self.W.T
