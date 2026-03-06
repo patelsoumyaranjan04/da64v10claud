@@ -43,6 +43,7 @@ class Layer:
         if self.activation is not None:
             delta = delta * ACT_GRAD[self.activation](self.cache_z)
 
-        self.grad_W = self.cache_input.T @ delta
+        batch_size = self.cache_input.shape[0]
+        self.grad_W = (self.cache_input.T @ delta) / batch_size
         self.grad_b = delta.mean(axis=0, keepdims=True)
         return delta @ self.W.T

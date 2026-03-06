@@ -24,7 +24,7 @@ def cross_entropy_grad(logits, y_true):
     grad = probs.copy()
     grad[np.arange(n), y_true] -= 1
 
-    return grad / n
+    return grad 
 
 
 def mse(logits, y_true):
@@ -49,7 +49,7 @@ def mse_grad(logits, y_true):
         jac = probs * (np.eye(c)[k] - probs[:, k:k+1])
         grad[:, k] = np.sum((2.0 / c) * diff * jac, axis=1)
 
-    return grad / n
+    return grad 
 
 
 LOSS_FN = dict(cross_entropy=cross_entropy, mse=mse)
